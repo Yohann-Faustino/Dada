@@ -1,0 +1,100 @@
+/* ------------------------------- */
+/* Variables CSS générales du carousel  */
+/* ------------------------------- */
+:root {
+  --primary-color: #a899ff; /* Couleur du background des flêches */
+  --arrow-size: 30px; /* Taille des flèches de navigation */
+  --image-height: 200px; /* Hauteur fixe des images du carousel */
+  --border-radius: 8px; /* Arrondis des angles*/
+}
+
+/* ------------------------------- */
+/* Conteneur principal du carousel */
+/* ------------------------------- */
+.container {
+  width: 300px; /* Largeur fixe du conteneur */
+  margin: 20px auto; /* Centrage horizontal avec marge verticale */
+  position: relative; /* Permet le positionnement absolu des enfants */
+  border: 1px solid #ddd; /* Bordure grise légère */
+  border-radius: var(--border-radius); /* Arrondis des angles via variable */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* ------------------------------- */
+/* Styles des images du carousel */
+/* ------------------------------- */
+.image {
+  width: 100%; /* Largeur relative au parent */
+  height: var(--image-height); /* Hauteur fixe via variable */
+  object-fit: cover; /* Recadre l'image sans déformation */
+  display: block; /* Comportement de type bloc */
+  transition: transform 0.3s ease; /* Animation fluide */
+}
+
+/* Effet de zoom au survol */
+.image:hover {
+  transform: scale(1.02);
+}
+
+/* ------------------------------- */
+/* Styles des descriptifs sous l'images */
+/* ------------------------------- */
+.caption {
+  text-align: center; /* Centrage du texte */
+  padding: 8px; /* Espacement interne */
+  font-size: 14px; /* Taille de police */
+  background: white; /* Fond blanc pour lisibilité */
+  margin: 0; /* Suppression des marges par défaut */
+}
+
+/* ------------------------------- */
+/* Styles communs des flèches */
+/* ------------------------------- */
+.arrow {
+  position: absolute; /* Positionnement absolu dans le conteneur relatif */
+  top: 50%; /* Alignement vertical au centre */
+  transform: translateY(-50%); /* Ajustement précis du centrage */
+  background: var(--primary-color); /* Couleur du background des flêches via variables */
+  border: none; /* Suppression de la bordure par défaut */
+  border-radius: 50%; /* Forme circulaire */
+  width: var(--arrow-size); /* Largeur via variable */
+  height: var(--arrow-size); /* Hauteur via variable */
+  color: white; /* Couleur de l'icône */
+  cursor: pointer; /* Curseur en forme de main */
+  z-index: 1; /* Au-dessus des autres éléments */
+  display: flex; /* Flexbox pour centrage */
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal */
+  font-size: 16px; /* Taille de la flèche Unicode */
+  opacity: 0.8; /* Légère transparence */
+  transition: all 0.3s ease; /* Animation des transitions */
+}
+
+/* Effet au survol des flèches */
+.arrow:hover {
+  opacity: 1; /* Opacité totale */
+  transform: translateY(-50%) scale(1.1); /* Effet de zoom au survol */
+}
+
+/* Flèche gauche */
+.prevArrow {
+  left: -15px; /* Décalage vers l'extérieur du conteneur */
+}
+
+/* Flèche droite */
+.nextArrow {
+  right: -15px; /* Décalage vers l'extérieur du conteneur */
+}
+
+/* ------------------------------- */
+/* Personnalisation des points de navigation */
+/* ------------------------------- */
+.slickDots {
+  bottom: 10px !important; /* Remonte les points vers le haut */
+}
+
+/* Style des points individuels */
+.slickDots li button:before {
+  color: var(--primary-color) !important; /* Couleur rose */
+  font-size: 10px !important; /* Taille réduite */
+}
