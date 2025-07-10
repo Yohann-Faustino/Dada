@@ -3,19 +3,31 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
-import './App.css'; // Pour les styles globaux
+import { supabase } from './lib/supabaseClient';
+import './App.css';
+import { useEffect } from 'react'; // Importez useEffect
 
 function App() {
+  // Testez la connexion dès le démarrage de l'app
+  useEffect(() => {
+    supabase.from('products').select('*')
+      .then(({ data, error }) => {
+        if (error) {
+          console.error("🚨 ERREUR DE CONNEXION :", error);
+          alert("Échec de la connexion à la BDD. Vérifiez la console.");
+        } else {
+          console.log("✅ CONNEXION RÉUSSIE. Données reçues :", data);
+        }
+      });
+  }, []); // Le tableau vide signifie que cela s'exécute une fois au montage
+
   return (
     <Router>
       <div className="app">
-        {/* La Navbar importer ici afin qu'elle soit visible sur toutes les pages */}
         <Navbar />
-        
-        {/* Contenu changeant selon la page */}
         <Routes>
-          <Route path="/" element={<Home />} />          {/* Route vers la page d'accueil */}
-          <Route path="/products" element={<Products />} /> {/* Route vers la page produits */}
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
         </Routes>
       </div>
     </Router>
